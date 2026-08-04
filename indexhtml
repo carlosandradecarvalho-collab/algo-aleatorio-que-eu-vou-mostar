@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidos Contra o Cyberbullying</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho e Menu de Navegação -->
+    <header>
+        <div class="container">
+            <h1>Todos Contra o <span>Cyberbullying</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">O que é</a></li>
+                    <li><a href="#sinais">Sinais</a></li>
+                    <li><a href="#ajuda">Como Agir</a></li>
+                    <li><a href="#denuncia">Canais de Apoio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero">
+        <div class="container">
+            <h2>A internet deve ser um lugar seguro para todos.</h2>
+            <p>Seja a voz que acolhe, não a que destrói. Proteja, denuncie, apoie.</p>
+            <a href="#ajuda" class="btn">Saiba Como Ajudar</a>
+        </div>
+    </section>
+
+    <!-- O que é Cyberbullying -->
+    <section id="sobre" class="content-section">
+        <div class="container">
+            <h2>O que é Cyberbullying?</h2>
+            <p>É a prática de intimidação, humilhação, perseguição ou agressão verbal contra indivíduos no ambiente virtual. Ocorre frequentemente em redes sociais, aplicativos de mensagens e plataformas de jogos online. Ao contrário do bullying tradicional, o alcance digital amplia a exposição da vítima por 24 horas por dia.</p>
+        </div>
+    </section>
+
+    <!-- Sinais de Alerta -->
+    <section id="sinais" class="content-section bg-light">
+        <div class="container">
+            <h2>Sinais de Alerta</h2>
+            <p>Fique atento ao comportamento de amigos ou familiares. Mudanças repentinas podem indicar que alguém precisa de ajuda:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Isolamento Social</h3>
+                    <p>Afastamento abrupto de amigos, familiares e atividades que antes geravam prazer.</p>
+                </div>
+                <div class="card">
+                    <h3>Mudança de Humor</h3>
+                    <p>Irritabilidade constante, ansiedade, tristeza profunda ou medo ao receber notificações.</p>
+                </div>
+                <div class="card">
+                    <h3>Abandono Digital</h3>
+                    <p>Excluir contas em redes sociais ou demonstrar pavor repentino ao usar o celular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Agir -->
+    <section id="ajuda" class="content-section">
+        <div class="container">
+            <h2>Como Agir diante de uma Agressão?</h2>
+            <ol class="action-list">
+                <li><strong>Não responda:</strong> Os agressores buscam reações para continuar os ataques.</li>
+                <li><strong>Guie as provas:</strong> Tire prints de todas as conversas, comentários, links e perfis.</li>
+                <li><strong>Bloqueie imediatamente:</strong> Use as ferramentas das plataformas para silenciar o agressor.</li>
+                <li><strong>Denuncie na plataforma:</strong> Reporte a conta e a publicação nas próprias redes sociais.</li>
+                <li><strong>Busque ajuda legal:</strong> Ataques virtuais podem configurar crimes como injúria, calúnia ou difamação.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Canais de Denúncia e Apoio -->
+    <section id="denuncia" class="content-section bg-light">
+        <div class="container">
+            <h2>Canais Oficiais de Apoio</h2>
+            <p>Você não está sozinho. Existem organizações prontas para te ouvir de forma anônima e gratuita:</p>
+            
+            <div class="support-channels">
+                <div class="channel">
+                    <h3>SaferNet Brasil</h3>
+                    <p>Canal especializado em receber denúncias de crimes e violações de direitos humanos na internet.</p>
+                    <a href="https://safernet.org.br" target="_blank" class="btn-sm">Acessar SaferNet</a>
+                </div>
+                <div class="channel">
+                    <h3>CVV (Centro de Valorização da Vida)</h3>
+                    <p>Apoio emocional e prevenção do suicídio, atendendo voluntária e gratuitamente todas as pessoas.</p>
+                    <a href="tel:188" class="btn-sm">Ligar para 188</a>
+                </div>
+            </div>
+
+            <!-- Formulário de Contato/Simulação -->
+            <div class="form-container">
+                <h3>Precisa desabafar?</h3>
+                <p>Envie uma mensagem para nossa equipe de apoio voluntário (Simulação).</p>
+                <form id="contactForm">
+                    <input type="text" id="name" placeholder="Seu nome (pode ser um apelido)" required>
+                    <input type="email" id="email" placeholder="Seu e-mail de contato" required>
+                    <textarea id="message" rows="5" placeholder="Conte-nos o que está acontecendo..." required></textarea>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+                <div id="formFeedback" class="hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Internet Segura. Todos os direitos reservados. Promovendo a empatia no ambiente digital.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
