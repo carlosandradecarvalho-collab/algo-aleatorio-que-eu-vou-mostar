@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unidos Contra o Cyberbullying | Internet Segura</title>
-    <!-- Link para ícones modernos (FontAwesome) -->
+    <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Link de conexão com o arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- BARRA DE PROGRESSO DE LEITURA -->
+    <div id="progress-bar"></div>
+
+    <!-- BOTÃO FLUTUANTE DO TEMA -->
+    <button id="theme-toggle" aria-label="Alternar tema">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
     <!-- CABEÇALHO -->
     <header>
-        <div class="container">
+        <div class="container header-container">
             <div class="logo">Internet<span>Segura</span></div>
-            <nav>
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu">
                 <ul>
                     <li><a href="#sobre">O que é</a></li>
+                    <li><a href="#quiz">Teste</a></li>
                     <li><a href="#sinais">Sinais</a></li>
                     <li><a href="#agir">Como Agir</a></li>
+                    <li><a href="#faq">Dúvidas</a></li>
                     <li><a href="#apoio">Apoio</a></li>
                 </ul>
             </nav>
@@ -39,14 +51,63 @@
     <section id="sobre" class="section">
         <div class="container">
             <h2 class="section-title">O que é Cyberbullying?</h2>
-            <p class="section-subtitle" style="max-width: 800px; font-size: 1.15rem; line-height: 1.8; margin-left: auto; margin-right: auto;">
+            <p class="section-subtitle" style="max-width: 800px; font-size: 1.15rem; line-height: 1.8; margin: 0 auto;">
                 É a prática de intimidação, humilhação, perseguição ou agressão verbal direcionada contra indivíduos no ambiente digital. Ao contrário do bullying físico tradicional, a agressão virtual se espalha de forma viral, acontece 24 horas por dia e gera uma exposição pública contínua, amplificando os impactos psicológicos na vítima.
             </p>
         </div>
     </section>
 
+    <!-- INTERATIVIDADE 1: MINI-QUIZ DE PERCEPÇÃO -->
+    <section id="quiz" class="section section-bg">
+        <div class="container">
+            <h2 class="section-title">Isso é Cyberbullying? Teste sua Percepção</h2>
+            <p class="section-subtitle">Clique nas situações abaixo para descobrir se a atitude ultrapassa os limites do respeito.</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-card" data-answer="sim">
+                    <div class="quiz-card-front">
+                        <i class="fa-solid fa-comments"></i>
+                        <p>Criar figurinhas ou memes zombando da aparência de um colega e espalhar em grupos.</p>
+                        <span class="quiz-click-hint">Clique para analisar</span>
+                    </div>
+                    <div class="quiz-card-back text-perigo">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <h3>Sim, é Cyberbullying!</h3>
+                        <p>Usar a imagem de alguém sem autorização para ridicularizar ou expor ao vexame coletivo é agressão virtual e pode configurar crime.</p>
+                    </div>
+                </div>
+
+                <div class="quiz-card" data-answer="nao">
+                    <div class="quiz-card-front">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <p>Discordar educadamente da opinião política ou hobby de alguém nos comentários públicos.</p>
+                        <span class="quiz-click-hint">Clique para analisar</span>
+                    </div>
+                    <div class="quiz-card-back text-sucesso">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <h3>Não é Cyberbullying!</h3>
+                        <p>Divergências saudáveis fazem parte da internet. Desde que não haja xingamentos, perseguição sistemática ou humilhações.</p>
+                    </div>
+                </div>
+
+                <div class="quiz-card" data-answer="sim">
+                    <div class="quiz-card-front">
+                        <i class="fa-solid fa-ghost"></i>
+                        <p>Criar um perfil falso fingindo ser outra pessoa para deixar comentários maldosos na rede.</p>
+                        <span class="quiz-click-hint">Clique para analisar</span>
+                    </div>
+                    <div class="quiz-card-back text-perigo">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <h3>Sim, é Cyberbullying!</h3>
+                        <p>O anonimato forjado através de fakes para atacar indivíduos de forma repetitiva é uma das práticas mais comuns e nocivas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SINAIS -->
-    <section id="sinais" class="section section-bg">
+    <section id="sinais" class="section">
         <div class="container">
             <h2 class="section-title">Sinais de Alerta</h2>
             <p class="section-subtitle">Mudanças repentinas de comportamento podem indicar que um amigo ou familiar está sofrendo calado.</p>
@@ -72,7 +133,7 @@
     </section>
 
     <!-- COMO AGIR -->
-    <section id="agir" class="section">
+    <section id="agir" class="section section-bg">
         <div class="container">
             <h2 class="section-title">Guia de Ação Automática</h2>
             <p class="section-subtitle">Caso você ou alguém próximo se torne um alvo, siga rigorosamente este protocolo:</p>
@@ -88,7 +149,7 @@
                 </div>
                 <div class="timeline-item">
                     <h3>3. Aplique Bloqueios</h3>
-                    <p>Use os mecanismos nativos das plataformas para bloquear as contas agressoras e silenciar tentativas de novos contatos.</p>
+                    <p>Use os mechanisms nativos das plataformas para bloquear as contas agressoras e silenciar tentativas de novos contatos.</p>
                 </div>
                 <div class="timeline-item">
                     <h3>4. Denuncie nas Plataformas</h3>
@@ -102,63 +163,19 @@
         </div>
     </section>
 
-    <!-- APOIO E FORMULÁRIO -->
-    <section id="apoio" class="section section-bg">
+    <!-- INTERATIVIDADE 2: ACORDEÃO DE PERGUNTAS FREQUENTES (FAQ) -->
+    <section id="faq" class="section">
         <div class="container">
-            <h2 class="section-title">Canais Oficiais e Suporte</h2>
-            <p class="section-subtitle">Você não precisa carregar esse peso sozinho. Encontre acolhimento imediato e gratuito.</p>
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <p class="section-subtitle">Esclareça dúvidas rápidas sobre direitos, responsabilidades e proteção online.</p>
             
-            <div class="support-flex">
-                <div class="channel-card">
-                    <i class="fa-solid fa-globe"></i>
-                    <h3>SaferNet Brasil</h3>
-                    <p>Combate a violações de direitos humanos e crimes cibernéticos na internet.</p>
-                    <a href="https://safernet.org.br" target="_blank" class="btn-outline">Acessar Canal</a>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">Cyberbullying é considerado crime no Brasil? <i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>Sim. O cyberbullying foi explicitamente tipificado no Código Penal brasileiro (Art. 146-A), integrando crimes de intimidação sistemática cometidos por meio da internet, redes sociais ou aplicações digitais, sujeitando o agressor a penalidades severas.</p>
+                    </div>
                 </div>
-                <div class="channel-card">
-                    <i class="fa-solid fa-phone-flip"></i>
-                    <h3>CVV — Canal 188</h3>
-                    <p>Apoio emocional confidencial e prevenção ao suicídio 24 horas por dia.</p>
-                    <a href="tel:188" class="btn-outline">Ligar Gratuitamente</a>
-                </div>
-            </div>
-
-            <div class="form-box">
-                <h3 style="margin-bottom: 10px; color: var(--dark); font-weight: 700;">Precisa de Orientação?</h3>
-                <p style="color: #718096; margin-bottom: 25px; font-size: 0.95rem;">Envie um relato anônimo para simular nossa central de apoio especializado.</p>
-                
-                <form id="secureForm">
-                    <div class="form-group">
-                        <label for="name">Como quer ser chamado? (Pode usar apelido)</label>
-                        <input type="text" id="name" class="form-control" placeholder="Ex: Anonimo12" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail para retorno</label>
-                        <input type="email" id="email" class="form-control" placeholder="seu-email@provedor.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Descreva o que está acontecendo</label>
-                        <textarea id="message" class="form-control" rows="5" placeholder="Sua história e dados estarão protegidos..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; justify-content: center;">
-                        <i class="fa-solid fa-paper-plane"></i> Enviar Relato Seguro
-                    </button>
-                </form>
-                
-                <div id="alertFeedback" class="hidden"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer>
-        <div class="container">
-            <p><i class="fa-solid fa-heart" style="color: var(--secondary);"></i> Juntos por uma internet mais humana e empática.</p>
-            <p style="margin-top: 10px; font-size: 0.85rem; color: #718096;">&copy; 2026 Internet Segura. Desenvolvido para conscientização pública.</p>
-        </div>
-    </footer>
-
-    <!-- Link de conexão com o script JavaScript externo -->
-    <script src="script.js"></script>
-</body>
-</html>
+                <div class="faq-item">
+                    <button class="faq-question">O que fazer se o agressor usar uma conta falsa (fake)? <i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer">
