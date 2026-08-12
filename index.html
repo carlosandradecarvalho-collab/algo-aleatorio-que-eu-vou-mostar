@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Segura | Plataforma Interativa Contra o Cyberbullying</title>
+    <title>Portal Conexão Segura | Plataforma Interativa Contra o Cyberbullying</title>
     
+    <!-- 🎨 ARQUITETURA CSS COMPLETA -->
     <style>
         :root {
             --primary: #4f46e5;
             --primary-hover: #4338ca;
-            --primary-light: rgba(79, 70, 229, 0.1);
+            --primary-light: rgba(79, 70, 229, 0.08);
             --danger: #dc2626;
             --danger-hover: #b91c1c;
             --success: #10b981;
+            --warning: #f59e0b;
             --text: #0f172a;
             --text-muted: #475569;
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --border: #e2e8f0;
             --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-            --radius: 16px;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -31,25 +34,20 @@
                 --bg-card: #0f172a;
                 --border: #1e293b;
                 --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+                --primary-light: rgba(79, 70, 229, 0.15);
             }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
         html { scroll-behavior: smooth; }
         body { color: var(--text); background-color: var(--bg-body); line-height: 1.6; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* Menu */
+        /* Menu Principal */
         header {
             background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             padding: 16px 0;
             position: sticky;
@@ -58,132 +56,268 @@
         }
         @media (prefers-color-scheme: dark) { header { background: rgba(2, 6, 23, 0.8); } }
         header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
         nav { display: flex; gap: 20px; align-items: center; }
         nav a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
         nav a:hover { color: var(--primary); }
-        .btn-nav { background: var(--primary); color: white !important; padding: 8px 16px; border-radius: 20px; }
+        .btn-nav { background: var(--primary); color: white !important; padding: 8px 18px; border-radius: 20px; }
 
-        /* Hero */
+        /* Banner Principal (Hero) */
         .hero {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
-            padding: 90px 0;
+            padding: 120px 0;
             text-align: center;
         }
-        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+        .hero h1 { font-size: 3.25rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.04em; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
 
-        /* Seções */
-        .section { padding: 80px 0; }
-        .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 40px; }
-        .bg-card-section { background-color: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        /* Estrutura de Seções */
+        .section { padding: 96px 0; }
+        .section-title { font-size: 2.25rem; font-weight: 800; text-align: center; margin-bottom: 16px; letter-spacing: -0.03em; }
+        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .bg-light { background-color: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-        /* INTERATIVIDADE 1: Quiz */
-        .quiz-container { max-width: 600px; margin: 0 auto; background: var(--bg-body); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); }
-        .quiz-pergunta { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
-        .quiz-opcoes { display: flex; gap: 15px; }
-        .btn-quiz { background: var(--bg-card); border: 2px solid var(--border); color: var(--text); padding: 12px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: var(--transition); }
+        /* Painel Estatístico */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 48px; }
+        .stat-card { background: var(--bg-body); padding: 32px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+        .stat-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Grid de Cards */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+        .card { background: var(--bg-body); padding: 36px; border-radius: var(--radius-md); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card h3 { margin-bottom: 16px; color: var(--primary); font-size: 1.35rem; }
+        .card p { color: var(--text-muted); margin-bottom: 12px; }
+        
+        /* Modificadores para a Calculadora Interativa */
+        .card label { display: flex; align-items: center; gap: 12px; margin: 12px 0; cursor: pointer; font-weight: 500; }
+        .card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary); }
+
+        /* Sistema de Abas Educativas */
+        .tabs-container { max-width: 800px; margin: 0 auto; }
+        .tabs-nav { display: flex; gap: 12px; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+        .tab-btn { background: none; border: none; padding: 12px 24px; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; position: relative; width: auto; margin-top: 0; }
+        .tab-btn.active { color: var(--primary); }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--primary); }
+        .tab-content { display: none; background: var(--bg-body); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+
+        /* Quiz Dinâmico */
+        .quiz-container { max-width: 650px; margin: 0 auto; background: var(--bg-body); padding: 36px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .quiz-pergunta { font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .quiz-opcoes { display: flex; gap: 16px; }
+        .btn-quiz { background: var(--bg-card); border: 2px solid var(--border); color: var(--text); padding: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; }
         .btn-quiz:hover { border-color: var(--primary); }
-        .quiz-feedback { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .quiz-feedback { margin-top: 24px; padding: 16px; border-radius: 8px; display: none; font-weight: 600; }
 
-        /* INTERATIVIDADE 2: FAQ Dinâmico */
-        .busca-container { max-width: 500px; margin: 0 auto 30px; }
-        .input-busca { width: 100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; }
-        .faq-item { background: var(--bg-body); padding: 20px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 15px; transition: var(--transition); }
+        /* Painel de Busca (FAQ) */
+        .busca-container { max-width: 500px; margin: 0 auto 32px; }
+        .input-busca { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; }
+        .faq-item { background: var(--bg-body); padding: 24px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 16px; }
         .faq-item h3 { color: var(--primary); margin-bottom: 8px; }
 
-        /* INTERATIVIDADE 3: Formulário Avançado */
-        .box-relato { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 35px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
-        textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; resize: vertical; }
-        .contador { font-size: 0.85rem; color: var(--text-muted); text-align: right; margin-top: 5px; }
-        button { background: var(--primary); color: white; border: none; padding: 12px 24px; font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 15px; transition: var(--transition); }
+        /* Formulário de Relato Seguro */
+        .box-relato { max-width: 650px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow); }
+        textarea { width: 100%; padding: 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 1rem; background: var(--bg-body); color: var(--text); resize: vertical; }
+        .contador { font-size: 0.85rem; color: var(--text-muted); text-align: right; margin-top: 6px; }
+        
+        button, select { width: 100%; padding: 14px; font-size: 1rem; font-weight: 700; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); }
+        button { background: var(--primary); color: white; border: none; margin-top: 16px; }
         button:hover { background: var(--primary-hover); }
-        .sucesso-alert { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; margin-top: 15px; display: none; }
+        select { border: 2px solid var(--border); background: var(--bg-body); color: var(--text); font-weight: 500; outline: none; }
+        
+        .alert-success { background: rgba(16, 185, 129, 0.1); color: #065f46; padding: 16px; border-radius: var(--radius-md); margin-top: 20px; text-align: center; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2); display: none; }
+        @media (prefers-color-scheme: dark) { .alert-success { color: #34d399; } }
 
-        /* INTERATIVIDADE 4: Cartão de Apoio */
-        .apoio-card { text-align: center; margin-bottom: 40px; background: var(--primary-light); padding: 25px; border-radius: 8px; border: 1px dashed var(--primary); }
-        .apoio-texto { font-size: 1.15rem; font-style: italic; font-weight: 600; color: var(--primary); margin-bottom: 15px; }
-        .btn-apoio { background: transparent; color: var(--primary); border: 2px solid var(--primary); max-width: 220px; margin: 0 auto; padding: 8px 16px; }
+        /* Gerador de Frases e Botão de Pânico */
+        .apoio-card { text-align: center; margin-bottom: 40px; background: var(--primary-light); padding: 32px; border-radius: var(--radius-md); border: 1px dashed var(--primary); }
+        .apoio-texto { font-size: 1.2rem; font-style: italic; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+        .btn-apoio { background: transparent; color: var(--primary); border: 2px solid var(--primary); max-width: 240px; margin: 0 auto; padding: 10px 20px; }
         .btn-apoio:hover { background: var(--primary); color: white; }
 
-        /* Saída de Emergência */
-        .alerta-seguranca { max-width: 600px; margin: 50px auto 0; padding: 25px; background: rgba(220, 38, 38, 0.05); border: 2px dashed var(--danger); border-radius: var(--radius); text-align: center; }
-        .btn-emergencia { background: var(--danger); margin-top: 15px; }
+        .alerta-seguranca { max-width: 650px; margin: 56px auto 0; padding: 32px; background: rgba(220, 38, 38, 0.03); border: 2px dashed var(--danger); border-radius: var(--radius-lg); text-align: center; }
+        .btn-emergencia { background: var(--danger); max-width: 280px; margin: 20px auto 0; }
         .btn-emergencia:hover { background: var(--danger-hover); }
 
-        footer { background: #020617; color: #64748b; text-align: center; padding: 30px 0; font-size: 0.9rem; border-top: 1px solid #0f172a; }
+        footer { background: #020617; color: #64748b; text-align: center; padding: 48px 0; font-size: 0.9rem; border-top: 1px solid #0f172a; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            header .container { flex-direction: column; gap: 10px; }
-            .quiz-opcoes { flex-direction: column; }
+            .hero h1 { font-size: 2.25rem; }
+            header .container, .quiz-opcoes, .tabs-nav { flex-direction: column; }
+            nav { width: 100%; justify-content: center; gap: 16px; margin-top: 12px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <a href="#" class="logo">🛡️ Conexão Segura</a>
-            <nav>
-                <a href="#quiz">Desafio</a>
-                <a href="#faq">Dúvidas</a>
-                <a href="#ajuda" class="btn-nav">Apoio</a>
-            </nav>
-        </div>
-    </header>
+    <!-- 🌐 ESTRUTURA HTML SEMÂNTICA -->
+    <header role="banner">
+        <div class="container"><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Conexão Segura | Plataforma Interativa Contra o Cyberbullying</title>
+    
+    <!-- 🎨 ARQUITETURA CSS COMPLETA -->
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: rgba(79, 70, 229, 0.08);
+            --danger: #dc2626;
+            --danger-hover: #b91c1c;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Internet Segura e Interativa</h1>
-                <p>O cyberbullying deixa marcas reais. Use nossas ferramentas interativas abaixo para aprender a se defender e buscar ajuda imediata.</p>
-            </div>
-        </section>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f8fafc;
+                --text-muted: #94a3b8;
+                --bg-body: #020617;
+                --bg-card: #0f172a;
+                --border: #1e293b;
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+                --primary-light: rgba(79, 70, 229, 0.15);
+            }
+        }
 
-        <!-- INTERATIVIDADE 1: Quiz Realidade Virtual -->
-        <section id="quiz" class="section">
-            <div class="container">
-                <h2 class="section-title">💡 Teste Seus Conhecimentos</h2>
-                <div class="quiz-container">
-                    <p class="quiz-pergunta" id="quizPergunta">Carregando pergunta...</p>
-                    <div class="quiz-opcoes">
-                        <button class="btn-quiz" onclick="verificarResposta(true)">VERDADE</button>
-                        <button class="btn-quiz" onclick="verificarResposta(false)">MITO</button>
-                    </div>
-                    <div id="quizFeedback" class="quiz-feedback"></div>
-                </div>
-            </div>
-        </section>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { color: var(--text); background-color: var(--bg-body); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        <!-- INTERATIVIDADE 2: Busca Dinâmica de Dúvidas -->
-        <section id="faq" class="section bg-card-section">
-            <div class="container">
-                <h2 class="section-title">🔍 Central de Respostas Rápidas</h2>
-                <div class="busca-container">
-                    <input type="text" id="inputBusca" class="input-busca" placeholder="Digite uma palavra (ex: print, lei, sumir)...">
-                </div>
-                <div id="faqLista">
-                    <div class="faq-item">
-                        <h3>Como salvar provas de ataques virtuais?</h3>
-                        <p>Tire prints completos da tela mostrando a data, o horário, o link da página (URL) e o nome do perfil que fez a agressão.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Cyberbullying é considerado crime no Brasil?</h3>
-                        <p>Sim, a intimidação sistemática virtual foi incluída no Código Penal com penas de reclusão e multa.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>O que fazer se criarem um perfil falso meu?</h3>
-                        <p>Denuncie imediatamente na própria rede social, avise seus amigos para não caírem no golpe e registre um Boletim de Ocorrência.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        /* Menu Principal */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        @media (prefers-color-scheme: dark) { header { background: rgba(2, 6, 23, 0.8); } }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        nav a:hover { color: var(--primary); }
+        .btn-nav { background: var(--primary); color: white !important; padding: 8px 18px; border-radius: 20px; }
 
-        <!-- INTERATIVIDADE 3 e 4: Apoio Emocional e Formulário -->
-        <section id="ajuda" class="section">
-            <div class="container">
-                <h2 class="section-title">Apoio e Acolhimento</h2>
+        /* Banner Principal (Hero) */
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3.25rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.04em; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto; opacity: 0.9; }
 
-                <!-- Interatividade 4: Gerador de Frases -->
+        /* Estrutura de Seções */
+        .section { padding: 96px 0; }
+        .section-title { font-size: 2.25rem; font-weight: 800; text-align: center; margin-bottom: 16px; letter-spacing: -0.03em; }
+        .section-subtitle { text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .bg-light { background-color: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+        /* Painel Estatístico */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 48px; }
+        .stat-card { background: var(--bg-body); padding: 32px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+        .stat-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Grid de Cards */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+        .card { background: var(--bg-body); padding: 36px; border-radius: var(--radius-md); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card h3 { margin-bottom: 16px; color: var(--primary); font-size: 1.35rem; }
+        .card p { color: var(--text-muted); margin-bottom: 12px; }
+        
+        /* Modificadores para a Calculadora Interativa */
+        .card label { display: flex; align-items: center; gap: 12px; margin: 12px 0; cursor: pointer; font-weight: 500; }
+        .card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary); }
+
+        /* Sistema de Abas Educativas */
+        .tabs-container { max-width: 800px; margin: 0 auto; }
+        .tabs-nav { display: flex; gap: 12px; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+        .tab-btn { background: none; border: none; padding: 12px 24px; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; position: relative; width: auto; margin-top: 0; }
+        .tab-btn.active { color: var(--primary); }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--primary); }
+        .tab-content { display: none; background: var(--bg-body); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+
+        /* Quiz Dinâmico */
+        .quiz-container { max-width: 650px; margin: 0 auto; background: var(--bg-body); padding: 36px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+        .quiz-pergunta { font-size: 1.2rem; font-weight: 700; margin-bottom: 24px; }
+        .quiz-opcoes { display: flex; gap: 16px; }
+        .btn-quiz { background: var(--bg-card); border: 2px solid var(--border); color: var(--text); padding: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; }
+        .btn-quiz:hover { border-color: var(--primary); }
+        .quiz-feedback { margin-top: 24px; padding: 16px; border-radius: 8px; display: none; font-weight: 600; }
+
+        /* Painel de Busca (FAQ) */
+        .busca-container { max-width: 500px; margin: 0 auto 32px; }
+        .input-busca { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; }
+        .faq-item { background: var(--bg-body); padding: 24px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 16px; }
+        .faq-item h3 { color: var(--primary); margin-bottom: 8px; }
+
+        /* Formulário de Relato Seguro */
+        .box-relato { max-width: 650px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow); }
+        textarea { width: 100%; padding: 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 1rem; background: var(--bg-body); color: var(--text); resize: vertical; }
+        .contador { font-size: 0.85rem; color: var(--text-muted); text-align: right; margin-top: 6px; }
+        
+        button, select { width: 100%; padding: 14px; font-size: 1rem; font-weight: 700; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); }
+        button { background: var(--primary); color: white; border: none; margin-top: 16px; }
+        button:hover { background: var(--primary-hover); }
+        select { border: 2px solid var(--border); background: var(--bg-body); color: var(--text); font-weight: 500; outline: none; }
+        
+        .alert-success { background: rgba(16, 185, 129, 0.1); color: #065f46; padding: 16px; border-radius: var(--radius-md); margin-top: 20px; text-align: center; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.2); display: none; }
+        @media (prefers-color-scheme: dark) { .alert-success { color: #34d399; } }
+
+        /* Gerador de Frases e Botão de Pânico */
+        .apoio-card { text-align: center; margin-bottom: 40px; background: var(--primary-light); padding: 32px; border-radius: var(--radius-md); border: 1px dashed var(--primary); }
+        .apoio-texto { font-size: 1.2rem; font-style: italic; font-weight: 600; color: var(--primary); margin-bottom: 16px; }
+        .btn-apoio { background: transparent; color: var(--primary); border: 2px solid var(--primary); max-width: 240px; margin: 0 auto; padding: 10px 20px; }
+        .btn-apoio:hover { background: var(--primary); color: white; }
+
+        .alerta-seguranca { max-width: 650px; margin: 56px auto 0; padding: 32px; background: rgba(220, 38, 38, 0.03); border: 2px dashed var(--danger); border-radius: var(--radius-lg); text-align: center; }
+        .btn-emergencia { background: var(--danger); max-width: 280px; margin: 20px auto 0; }
+        .btn-emergencia:hover { background: var(--danger-hover); }
+
+        footer { background: #020617; color: #64748b; text-align: center; padding: 48px 0; font-size: 0.9rem; border-top: 1px solid #0f172a; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.25rem; }
+            header .container, .quiz-opcoes, .tabs-nav { flex-direction: column; }
+            nav { width: 100%; justify-content: center; gap: 16px; margin-top: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌐 ESTRUTURA HTML SEMÂNTICA -->
+    <header role="banner">
+        <div class="container">                <a href="#ferramentas">Ferramentas</a>
