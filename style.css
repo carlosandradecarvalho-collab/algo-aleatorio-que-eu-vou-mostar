@@ -1,161 +1,326 @@
-:root {
-    --primary: #4f46e5;
-    --primary-dark: #3730a3;
-    --text-color: #1f2937;
-    --bg-light: #f3f4f6;
-    --white: #ffffff;
-}
+<style>
+    /* 1. Design Tokens & Temas (Variáveis Globais) */
+    :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --primary-light: rgba(79, 70, 229, 0.1);
+        --danger: #dc2626;
+        --danger-hover: #b91c1c;
+        --text: #0f172a;
+        --text-muted: #475569;
+        --bg-body: #f8fafc;
+        --bg-card: #ffffff;
+        --border: #e2e8f0;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        --radius-md: 12px;
+        --radius-lg: 20px;
+        --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    /* Suporte Otimizado e Automático ao Modo Escuro */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-body: #020617;
+            --bg-card: #0f172a;
+            --border: #1e293b;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --primary-light: rgba(79, 70, 229, 0.2);
+        }
+    }
 
-body {
-    color: var(--text-color);
-    line-height: 1.6;
-}
+    /* 2. Reset Técnico & Acessibilidade */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-/* Header */
-header {
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+    body {
+        color: var(--text);
+        background-color: var(--bg-body);
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
 
-nav a {
-    text-decoration: none;
-    color: var(--text-color);
-    margin-left: 20px;
-    font-weight: 600;
-}
+    /* 3. Cabeçalho Moderno (Glassmorphism) */
+    header {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: var(--transition);
+    }
 
-.btn-nav {
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 8px 16px;
-    border-radius: 20px;
-}
+    @media (prefers-color-scheme: dark) {
+        header { background: rgba(2, 6, 23, 0.75); }
+    }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-    color: var(--white);
-    padding: 100px 0;
-    text-align: center;
-}
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 
-.hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
+    .logo {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--primary);
+        text-decoration: none;
+        letter-spacing: -0.025em;
+    }
 
-.hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
 
-.btn-hero {
-    background-color: var(--white);
-    color: var(--primary);
-    padding: 12px 30px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
+    nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: var(--transition);
+    }
 
-/* Seções de Conteúdo */
-.content-section {
-    padding: 80px 0;
-}
+    nav a:hover {
+        color: var(--primary);
+    }
 
-.content-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
+    .btn-nav {
+        background-color: var(--primary);
+        color: #ffffff !important;
+        padding: 8px 20px;
+        border-radius: 9999px;
+    }
 
-.bg-light {
-    background-color: var(--bg-light);
-}
+    .btn-nav:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
 
-/* Grid de Passos */
-.grid-passos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
+    /* 4. Seção Hero (Banner Principal) */
+    .hero {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: #ffffff;
+        padding: 120px 0;
+        text-align: center;
+    }
 
-.passo {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
+    .hero h1 {
+        font-size: 3.25rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin-bottom: 24px;
+        line-height: 1.15;
+    }
 
-.passo h3 {
-    color: var(--primary);
-    margin-bottom: 10px;
-}
+    .hero p {
+        font-size: 1.25rem;
+        max-width: 680px;
+        margin: 0 auto;
+        opacity: 0.9;
+        font-weight: 400;
+    }
 
-/* Cards de Ajuda */
-.cards-ajuda {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 40px;
-}
+    /* 5. Seções de Conteúdo Estruturadas */
+    .section {
+        padding: 96px 0;
+    }
 
-.card {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    width: 320px;
-    border-top: 5px solid var(--primary);
-}
+    .section-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 48px;
+        letter-spacing: -0.03em;
+    }
 
-.card h3 {
-    margin-bottom: 15px;
-}
+    .bg-light {
+        background-color: var(--bg-card);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
 
-.btn-card {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-}
+    /* 6. Grid e Cards Otimizados */
+    .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+    }
 
-/* Footer */
-footer {
-    background-color: var(--text-color);
-    color: var(--white);
-    padding: 30px 0;
-    text-align: center;
-    font-size: 0.9rem;
-}
+    .card {
+        background: var(--bg-body);
+        padding: 36px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: var(--shadow-md);
+    }
+
+    .card h3 {
+        margin-bottom: 16px;
+        color: var(--primary);
+        font-size: 1.35rem;
+        font-weight: 700;
+    }
+
+    .card p {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    /* 7. Formulários e Inputs Modernos */
+    .box-relato {
+        max-width: 650px;
+        margin: 0 auto;
+        background: var(--bg-card);
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .box-relato p {
+        color: var(--text-muted);
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 16px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        background: var(--bg-body);
+        color: var(--text);
+        resize: vertical;
+        transition: var(--transition);
+    }
+
+    textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px var(--primary-light);
+    }
+
+    /* 8. Botões e Ações */
+    button {
+        background-color: var(--primary);
+        color: #ffffff;
+        border: none;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        transition: var(--transition);
+    }
+
+    button:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+    }
+
+    .alert-success {
+        background-color: rgba(16, 185, 129, 0.15);
+        color: #065f46;
+        padding: 16px;
+        border-radius: var(--radius-md);
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .alert-success { color: #34d399; }
+    }
+
+    /* 9. Botão de Pânico (Emergência) */
+    .alerta-seguranca {
+        margin-top: 56px;
+        padding: 32px;
+        background: rgba(220, 38, 38, 0.03);
+        border: 2px dashed var(--danger);
+        border-radius: var(--radius-lg);
+        text-align: center;
+    }
+
+    .alerta-seguranca h3 {
+        color: var(--danger);
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .btn-emergencia {
+        background-color: var(--danger);
+        max-width: 280px;
+        margin: 20px auto 0;
+    }
+
+    .btn-emergencia:hover {
+        background-color: var(--danger-hover);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    /* 10. Rodapé Semântico */
+    footer {
+        background: #020617;
+        color: #64748b;
+        text-align: center;
+        padding: 48px 0;
+        font-size: 0.9rem;
+        border-top: 1px solid #0f172a;
+    }
+
+    /* 11. Otimizações de Responsividade */
+    @media (max-width: 768px) {
+        .hero { padding: 80px 0; }
+        .hero h1 { font-size: 2.25rem; }
+        .section { padding: 64px 0; }
+        header .container { justify-content: center; text-align: center; }
+        nav { width: 100%; justify-content: center; gap: 16px; }
+        .box-relato { padding: 24px; }
+    }
+</style>

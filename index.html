@@ -3,81 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Segura | Contra o Cyberbullying</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Conexão Segura | Juntos Contra o Cyberbullying</title>
+    
+    <!-- CSS Moderno e Otimizado -->
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --danger: #dc2626;
+            --danger-hover: #b91c1c;
+            --text: #1f2937;
+            --text-muted: #4b5563;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --transition: all 0.25s ease-in-out;
+        }
+
+        /* Suporte Automático ao Modo Escuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f3f4f6;
+                --text-muted: #9ca3af;
+                --bg-body: #0f172a;
+                --bg-card: #1e293b;
+                --border: #334155;
+                --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text);
+            background-color: var(--bg-body);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Cabeçalho Magnético */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header { background: rgba(15, 23, 42, 0.8); }
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Seção Hero Fluida */
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Seções Gerais */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: -0.025em;
+        }
+
+        .bg-light {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Cards em Grid Interativo */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            background: var(--bg-body);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* Formulário Anti-XSS Otimizado */
+        .box-relato {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .box-relato p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--bg-body);
+            color: var(--text);
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.1);
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .alert-success {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Botão de Emergência Acessível */
+        .alerta-seguranca {
+            margin-top: 48px;
+            padding: 32px;
+            background: rgba(220, 38, 38, 0.05);
+            border: 2px dashed var(--danger);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .alerta-seguranca h3 {
+            color: var(--danger);
+            margin-bottom: 8px;
+        }
+
+        .btn-emergencia {
+            background-color: var(--danger);
+            max-width: 280px;
+            margin: 20px auto 0;
+            box-shadow: 0 4px 6px rgba(220, 38, 38, 0.1);
+        }
+
+        .btn-emergencia:hover {
+            background-color: var(--danger-hover);
+        }
+
+        /* Rodapé Semântico */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* Responsividade para Telas Pequenas */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            header .container { justify-content: center; text-align: center; }
+            nav { width: 100%; justify-content: center; }
+            .box-relato { padding: 24px; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
+    <header role="banner">
         <div class="container">
-            <h1>🛡️ Internet Segura</h1>
-            <nav>
+            <a href="#" class="logo">🛡️ Conexão Segura</a>
+            <nav role="navigation" aria-label="Menu principal">
                 <a href="#sobre">O que é</a>
-                <a href="#denunciar">Como Denunciar</a>
-                <a href="#ajuda" class="btn-nav">Preciso de Ajuda</a>
+                <a href="#agir">Como Agir</a>
+                <a href="#ajuda" class="btn-nav">Pedir Ajuda</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Você não está sozinho na rede.</h2>
-            <p>O cyberbullying machuca, mas a internet pode ser um lugar seguro. Aprenda a se proteger e a buscar apoio legal e psicológico.</p>
-            <a href="#ajuda" class="btn-hero">Obter Ajuda Agora</a>
-        </div>
-    </section>
-
-    <section id="sobre" class="content-section">
-        <div class="container">
-            <h2>O que é Cyberbullying?</h2>
-            <p>É a prática de humilhar, ameaçar, perseguir ou expor pessoas na internet, redes sociais e aplicativos de mensagens. Diferente do bullying físico, a agressão virtual acontece 24 horas por dia e pode alcançar milhares de pessoas rapidamente.</p>
-        </div>
-    </section>
-
-    <section id="denunciar" class="content-section bg-light">
-        <div class="container">
-            <h2>Como Agir e Denunciar</h2>
-            <div class="grid-passos">
-                <div class="passo">
-                    <h3>1. Não Reaja</h3>
-                    <p>Os agressores buscam atenção. Não responda às provocações para evitar que a situação aumente.</p>
-                </div>
-                <div class="passo">
-                    <h3>2. Guarde Provas</h3>
-                    <p>Tire prints de todas as conversas, comentários, fotos vazadas e anote os links dos perfis agressores.</p>
-                </div>
-                <div class="passo">
-                    <h3>3. Bloqueie</h3>
-                    <p>Use as ferramentas das redes sociais para bloquear o perfil e denunciar a publicação na própria plataforma.</p>
-                </div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>A internet deve ser um espaço seguro</h1>
+                <p>Humilhações, insultos e exclusão virtual machucam. Não se cale diante do cyberbullying. Proteja-se e apoie quem precisa.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="ajuda" class="content-section">
-        <div class="container text-center">
-            <h2>Canais Oficiais de Apoio</h2>
-            <p>Se você é vítima ou testemunha, utilize os canais abaixo. O atendimento é gratuito e sigiloso.</p>
-            <div class="cards-ajuda">
-                <div class="card">
-                    <h3>SaferNet Brasil</h3>
-                    <p>Canal especializado em orientação e denúncias de crimes cibernéticos.</p>
-                    <a href="https://safernet.org.br" target="_blank" class="btn-card">Acessar SaferNet</a>
-                </div>
-                <div class="card">
-                    <h3>Disque 100</h3>
-                    <p>Direitos Humanos. Registre denúncias de violência de forma anônima.</p>
-                    <a href="tel:100" class="btn-card">Ligar para o 100</a>
-                </div>
+        <section id="sobre" class="section">
+            <div class="container">
+                <h2 class="section-title">O que é Cyberbullying?</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.15rem; color: var(--text-muted);">
+                    É a violência, perseguição ou humilhação praticada contra alguém através do ecossistema digital: redes sociais, jogos online ou aplicativos de chat. Diferente das ofensas físicas, a agressão virtual propaga-se de forma viral, permanente e invasiva, ferindo a saúde psicológica da vítima sem barreiras de tempo ou espaço.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Internet Segura. Todos os direitos reservados. Cuidando da nossa comunidade virtual.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        <section id="agir" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">3 Passos Para se Proteger</h2>
+                <div class="grid-cards">
+                    <article class="card">
+                        <h3>1. Guarde Evidências</h3>
