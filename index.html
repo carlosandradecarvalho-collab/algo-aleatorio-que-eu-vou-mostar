@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Segura | Juntos Contra o Cyberbullying</title>
+    <title>Conexão Segura | Plataforma Interativa Contra o Cyberbullying</title>
     
-    <!-- CSS Moderno e Otimizado -->
     <style>
         :root {
             --primary: #4f46e5;
             --primary-hover: #4338ca;
+            --primary-light: rgba(79, 70, 229, 0.1);
             --danger: #dc2626;
             --danger-hover: #b91c1c;
-            --text: #1f2937;
-            --text-muted: #4b5563;
+            --success: #10b981;
+            --text: #0f172a;
+            --text-muted: #475569;
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --transition: all 0.25s ease-in-out;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Suporte Automático ao Modo Escuro */
         @media (prefers-color-scheme: dark) {
             :root {
-                --text: #f3f4f6;
-                --text-muted: #9ca3af;
-                --bg-body: #0f172a;
-                --bg-card: #1e293b;
-                --border: #334155;
-                --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+                --text: #f8fafc;
+                --text-muted: #94a3b8;
+                --bg-body: #020617;
+                --bg-card: #0f172a;
+                --border: #1e293b;
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
             }
         }
 
@@ -37,27 +38,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
+        body { color: var(--text); background-color: var(--bg-body); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        body {
-            color: var(--text);
-            background-color: var(--bg-body);
-            line-height: 1.6;
-            transition: var(--transition);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Cabeçalho Magnético */
+        /* Menu */
         header {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
@@ -68,254 +56,80 @@
             top: 0;
             z-index: 100;
         }
+        @media (prefers-color-scheme: dark) { header { background: rgba(2, 6, 23, 0.8); } }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        nav a:hover { color: var(--primary); }
+        .btn-nav { background: var(--primary); color: white !important; padding: 8px 16px; border-radius: 20px; }
 
-        @media (prefers-color-scheme: dark) {
-            header { background: rgba(15, 23, 42, 0.8); }
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .btn-nav {
-            background-color: var(--primary);
-            color: #ffffff !important;
-            padding: 8px 18px;
-            border-radius: 9999px;
-            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
-        }
-
-        .btn-nav:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-        }
-
-        /* Seção Hero Fluida */
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            color: #ffffff;
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Seções Gerais */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-            letter-spacing: -0.025em;
-        }
-
-        .bg-light {
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* Cards em Grid Interativo */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .card {
-            background: var(--bg-body);
-            padding: 32px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-        }
-
-        .card h3 {
-            margin-bottom: 16px;
-            color: var(--primary);
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-        }
-
-        /* Formulário Anti-XSS Otimizado */
-        .box-relato {
-            max-width: 650px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .box-relato p {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 1rem;
-            background: var(--bg-body);
-            color: var(--text);
-            resize: vertical;
-            transition: var(--transition);
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        button {
-            background-color: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.1);
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .alert-success {
-            background-color: #dcfce7;
-            color: #166534;
-            padding: 16px;
-            border-radius: 12px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-            display: none;
-        }
-
-        /* Botão de Emergência Acessível */
-        .alerta-seguranca {
-            margin-top: 48px;
-            padding: 32px;
-            background: rgba(220, 38, 38, 0.05);
-            border: 2px dashed var(--danger);
-            border-radius: 20px;
+            color: white;
+            padding: 90px 0;
             text-align: center;
         }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
 
-        .alerta-seguranca h3 {
-            color: var(--danger);
-            margin-bottom: 8px;
-        }
+        /* Seções */
+        .section { padding: 80px 0; }
+        .section-title { font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 40px; }
+        .bg-card-section { background-color: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-        .btn-emergencia {
-            background-color: var(--danger);
-            max-width: 280px;
-            margin: 20px auto 0;
-            box-shadow: 0 4px 6px rgba(220, 38, 38, 0.1);
-        }
+        /* INTERATIVIDADE 1: Quiz */
+        .quiz-container { max-width: 600px; margin: 0 auto; background: var(--bg-body); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); }
+        .quiz-pergunta { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+        .quiz-opcoes { display: flex; gap: 15px; }
+        .btn-quiz { background: var(--bg-card); border: 2px solid var(--border); color: var(--text); padding: 12px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: var(--transition); }
+        .btn-quiz:hover { border-color: var(--primary); }
+        .quiz-feedback { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
 
-        .btn-emergencia:hover {
-            background-color: var(--danger-hover);
-        }
+        /* INTERATIVIDADE 2: FAQ Dinâmico */
+        .busca-container { max-width: 500px; margin: 0 auto 30px; }
+        .input-busca { width: 100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; }
+        .faq-item { background: var(--bg-body); padding: 20px; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 15px; transition: var(--transition); }
+        .faq-item h3 { color: var(--primary); margin-bottom: 8px; }
 
-        /* Rodapé Semântico */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 40px 0;
-            font-size: 0.9rem;
-            border-top: 1px solid #1e293b;
-        }
+        /* INTERATIVIDADE 3: Formulário Avançado */
+        .box-relato { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 35px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+        textarea { width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 8px; background: var(--bg-body); color: var(--text); font-size: 1rem; resize: vertical; }
+        .contador { font-size: 0.85rem; color: var(--text-muted); text-align: right; margin-top: 5px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 24px; font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 15px; transition: var(--transition); }
+        button:hover { background: var(--primary-hover); }
+        .sucesso-alert { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; margin-top: 15px; display: none; }
 
-        /* Responsividade para Telas Pequenas */
+        /* INTERATIVIDADE 4: Cartão de Apoio */
+        .apoio-card { text-align: center; margin-bottom: 40px; background: var(--primary-light); padding: 25px; border-radius: 8px; border: 1px dashed var(--primary); }
+        .apoio-texto { font-size: 1.15rem; font-style: italic; font-weight: 600; color: var(--primary); margin-bottom: 15px; }
+        .btn-apoio { background: transparent; color: var(--primary); border: 2px solid var(--primary); max-width: 220px; margin: 0 auto; padding: 8px 16px; }
+        .btn-apoio:hover { background: var(--primary); color: white; }
+
+        /* Saída de Emergência */
+        .alerta-seguranca { max-width: 600px; margin: 50px auto 0; padding: 25px; background: rgba(220, 38, 38, 0.05); border: 2px dashed var(--danger); border-radius: var(--radius); text-align: center; }
+        .btn-emergencia { background: var(--danger); margin-top: 15px; }
+        .btn-emergencia:hover { background: var(--danger-hover); }
+
+        footer { background: #020617; color: #64748b; text-align: center; padding: 30px 0; font-size: 0.9rem; border-top: 1px solid #0f172a; }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            header .container { justify-content: center; text-align: center; }
-            nav { width: 100%; justify-content: center; }
-            .box-relato { padding: 24px; }
+            .hero h1 { font-size: 2rem; }
+            header .container { flex-direction: column; gap: 10px; }
+            .quiz-opcoes { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <header role="banner">
+    <header>
         <div class="container">
             <a href="#" class="logo">🛡️ Conexão Segura</a>
-            <nav role="navigation" aria-label="Menu principal">
-                <a href="#sobre">O que é</a>
-                <a href="#agir">Como Agir</a>
-                <a href="#ajuda" class="btn-nav">Pedir Ajuda</a>
+            <nav>
+                <a href="#quiz">Desafio</a>
+                <a href="#faq">Dúvidas</a>
+                <a href="#ajuda" class="btn-nav">Apoio</a>
             </nav>
         </div>
     </header>
@@ -323,23 +137,53 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>A internet deve ser um espaço seguro</h1>
-                <p>Humilhações, insultos e exclusão virtual machucam. Não se cale diante do cyberbullying. Proteja-se e apoie quem precisa.</p>
+                <h1>Internet Segura e Interativa</h1>
+                <p>O cyberbullying deixa marcas reais. Use nossas ferramentas interativas abaixo para aprender a se defender e buscar ajuda imediata.</p>
             </div>
         </section>
 
-        <section id="sobre" class="section">
+        <!-- INTERATIVIDADE 1: Quiz Realidade Virtual -->
+        <section id="quiz" class="section">
             <div class="container">
-                <h2 class="section-title">O que é Cyberbullying?</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.15rem; color: var(--text-muted);">
-                    É a violência, perseguição ou humilhação praticada contra alguém através do ecossistema digital: redes sociais, jogos online ou aplicativos de chat. Diferente das ofensas físicas, a agressão virtual propaga-se de forma viral, permanente e invasiva, ferindo a saúde psicológica da vítima sem barreiras de tempo ou espaço.
-                </p>
+                <h2 class="section-title">💡 Teste Seus Conhecimentos</h2>
+                <div class="quiz-container">
+                    <p class="quiz-pergunta" id="quizPergunta">Carregando pergunta...</p>
+                    <div class="quiz-opcoes">
+                        <button class="btn-quiz" onclick="verificarResposta(true)">VERDADE</button>
+                        <button class="btn-quiz" onclick="verificarResposta(false)">MITO</button>
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
             </div>
         </section>
 
-        <section id="agir" class="section bg-light">
+        <!-- INTERATIVIDADE 2: Busca Dinâmica de Dúvidas -->
+        <section id="faq" class="section bg-card-section">
             <div class="container">
-                <h2 class="section-title">3 Passos Para se Proteger</h2>
-                <div class="grid-cards">
-                    <article class="card">
-                        <h3>1. Guarde Evidências</h3>
+                <h2 class="section-title">🔍 Central de Respostas Rápidas</h2>
+                <div class="busca-container">
+                    <input type="text" id="inputBusca" class="input-busca" placeholder="Digite uma palavra (ex: print, lei, sumir)...">
+                </div>
+                <div id="faqLista">
+                    <div class="faq-item">
+                        <h3>Como salvar provas de ataques virtuais?</h3>
+                        <p>Tire prints completos da tela mostrando a data, o horário, o link da página (URL) e o nome do perfil que fez a agressão.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Cyberbullying é considerado crime no Brasil?</h3>
+                        <p>Sim, a intimidação sistemática virtual foi incluída no Código Penal com penas de reclusão e multa.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>O que fazer se criarem um perfil falso meu?</h3>
+                        <p>Denuncie imediatamente na própria rede social, avise seus amigos para não caírem no golpe e registre um Boletim de Ocorrência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERATIVIDADE 3 e 4: Apoio Emocional e Formulário -->
+        <section id="ajuda" class="section">
+            <div class="container">
+                <h2 class="section-title">Apoio e Acolhimento</h2>
+
+                <!-- Interatividade 4: Gerador de Frases -->

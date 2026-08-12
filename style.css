@@ -3,9 +3,10 @@
     :root {
         --primary: #4f46e5;
         --primary-hover: #4338ca;
-        --primary-light: rgba(79, 70, 229, 0.1);
+        --primary-light: rgba(79, 70, 229, 0.08);
         --danger: #dc2626;
         --danger-hover: #b91c1c;
+        --success: #10b981;
         --text: #0f172a;
         --text-muted: #475569;
         --bg-body: #f8fafc;
@@ -27,11 +28,11 @@
             --bg-card: #0f172a;
             --border: #1e293b;
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            --primary-light: rgba(79, 70, 229, 0.2);
+            --primary-light: rgba(79, 70, 229, 0.15);
         }
     }
 
-    /* 2. Reset Técnico & Acessibilidade */
+    /* 2. Reset Técnico */
     * {
         margin: 0;
         padding: 0;
@@ -143,10 +144,9 @@
         max-width: 680px;
         margin: 0 auto;
         opacity: 0.9;
-        font-weight: 400;
     }
 
-    /* 5. Seções de Conteúdo Estruturadas */
+    /* 5. Seções Gerais */
     .section {
         padding: 96px 0;
     }
@@ -165,7 +165,7 @@
         border-bottom: 1px solid var(--border);
     }
 
-    /* 6. Grid e Cards Otimizados */
+    /* 6. Grid e Cards Interativos */
     .grid-cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -196,10 +196,50 @@
 
     .card p {
         color: var(--text-muted);
-        font-size: 1rem;
     }
 
-    /* 7. Formulários e Inputs Modernos */
+    /* Estilo Especial para Elementos da Calculadora dentro do Card */
+    .card label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 12px 0;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    .card input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+        cursor: pointer;
+    }
+
+    select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--bg-body);
+        color: var(--text);
+        font-size: 1rem;
+        outline: none;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    select:focus {
+        border-color: var(--primary);
+    }
+
+    /* Painéis de Feedback da Calculadora e Redes */
+    #resultadoGravidade, #dicaRedeSocial {
+        font-weight: 600;
+        font-size: 0.95rem;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    /* 7. Formulários e Caixas de Mensagem */
     .box-relato {
         max-width: 650px;
         margin: 0 auto;
@@ -213,13 +253,6 @@
     .box-relato p {
         color: var(--text-muted);
         margin-bottom: 24px;
-        font-size: 0.95rem;
-    }
-
-    label {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 10px;
         font-size: 0.95rem;
     }
 
@@ -241,7 +274,7 @@
         box-shadow: 0 0 0 4px var(--primary-light);
     }
 
-    /* 8. Botões e Ações */
+    /* 8. Botões e Ações Gerais */
     button {
         background-color: var(--primary);
         color: #ffffff;
@@ -262,14 +295,14 @@
     }
 
     .alert-success {
-        background-color: rgba(16, 185, 129, 0.15);
+        background-color: rgba(16, 185, 129, 0.1);
         color: #065f46;
         padding: 16px;
         border-radius: var(--radius-md);
         margin-top: 20px;
         text-align: center;
         font-weight: 600;
-        border: 1px solid rgba(16, 185, 129, 0.3);
+        border: 1px solid rgba(16, 185, 129, 0.2);
         display: none;
     }
 
@@ -312,6 +345,12 @@
         padding: 48px 0;
         font-size: 0.9rem;
         border-top: 1px solid #0f172a;
+    }
+
+    /* Animação Suave de Surgimento */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     /* 11. Otimizações de Responsividade */
