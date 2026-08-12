@@ -1,329 +1,161 @@
-/* ==========================================================================
-   RESET & CONFIGURAÇÕES BASE
-   ========================================================================== */
 :root {
-    /* Paleta Light (Padrão) */
-    --clr-primary: #512da8;     
-    --clr-primary-light: #106299;
-    --clr-secondary: #00bcd4;   
-    --clr-dark: #1a1a24;        
-    --clr-light: #f8f9fa;       
-    --clr-text: #2d3748;        
-    --clr-text-muted: #061b3a;
-    --clr-bg-body: #bd1717;
-    --clr-bg-section: #f8f9fa;
-    --clr-bg-card: #ffffff;
-    --clr-border: #e2e8f0;
-    --clr-shadow: rgba(0, 0, 0, 0.04);
-    
-    /* Sistema de Feedback */
-    --clr-success: #38a169;
-    --clr-danger: #e53e3e;
-    
-    /* Estrutura e Transições */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-full: 9999px;
-    --timing-fast: 0.2s;
-    --timing-main: 0.4s;
-    --cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-[data-theme="dark"] {
-    /* Paleta Dark */
-    --clr-primary: #7e57c2;
-    --clr-primary-light: #9575cd;
-    --clr-secondary: #26c6da;
-    --clr-dark: #ffffff;
-    --clr-light: #121214;
-    --clr-text: #e2e8f0;
-    --clr-text-muted: #a0aec0;
-    --clr-bg-body: #1a1a24;
-    --clr-bg-section: #15151d;
-    --clr-bg-card: #222230;
-    --clr-border: #2d3748;
-    --clr-shadow: rgba(0, 0, 0, 0.3);
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --text-color: #1f2937;
+    --bg-light: #f3f4f6;
+    --white: #ffffff;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    color: var(--clr-text);
-    background-color: var(--clr-bg-body);
-    line-height: 1.7;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    transition: background-color var(--timing-fast) linear, color var(--timing-fast) linear;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-/* Componente Utilitário de Container */
 .container {
-    width: min(90%, 1200px);
-    margin-inline: auto;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* ==========================================================================
-   COMPONENTES GLOBAIS DE INTERAÇÃO
-   ========================================================================== */
-#progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background-color: var(--clr-secondary);
-    width: 0%;
-    z-index: 2000;
-    will-change: width;
-}
-
-#theme-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-full);
-    background-color: var(--clr-primary);
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    z-index: 1500;
-    font-size: 1.25rem;
-    display: grid;
-    place-items: center;
-    transition: transform var(--timing-fast) var(--cubic-bezier);
-}
-
-#theme-toggle:hover {
-    transform: scale(1.08) rotate(12deg);
-}
-
-#theme-toggle:active {
-    transform: scale(0.95);
-}
-
-/* ==========================================================================
-   CABECALHO & NAVEGAÇÃO
-   ========================================================================== */
+/* Header */
 header {
-    background-color: rgba(26, 26, 36, 0.96);
-    backdrop-filter: blur(12px);
-    color: #ffffff;
-    padding: 1rem 0;
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px 0;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
 }
 
-.header-container {
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-.logo span { color: var(--clr-secondary); }
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.nav-menu ul {
-    display: flex;
-    list-style: none;
-    gap: 0.5rem;
-}
-
-.nav-menu a {
-    color: #e2e8f0;
+nav a {
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
-    border-radius: var(--radius-full);
-    transition: background-color var(--timing-fast) var(--cubic-bezier), color var(--timing-fast);
-}
-
-.nav-menu a:hover, .nav-menu a.active {
-    color: #ffffff;
-    background-color: var(--clr-primary);
-}
-
-/* ==========================================================================
-   HERO BANNER
-   ========================================================================== */
-.hero {
-    background: linear-gradient(135deg, rgba(81, 45, 168, 0.88), rgba(26, 26, 36, 0.95)), 
-                url('https://unsplash.com') no-repeat center center/cover;
-    color: #ffffff;
-    text-align: center;
-    padding: clamp(80px, 10vw, 150px) 20px;
-}
-
-.hero h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
-.hero p { font-size: clamp(1rem, 2vw, 1.25rem); color: #e2e8f0; max-width: 720px; margin: 0 auto 2.5rem; }
-
-/* Botão Principal */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background-color: var(--clr-secondary);
-    color: #ffffff;
-    padding: 0.875rem 2rem;
-    text-decoration: none;
-    border: none;
-    border-radius: var(--radius-full);
+    color: var(--text-color);
+    margin-left: 20px;
     font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0, 188, 212, 0.35);
-    transition: transform var(--timing-fast) var(--cubic-bezier), background-color var(--timing-fast);
 }
 
-.btn:hover {
-    background-color: #00acc1;
-    transform: translateY(-2px);
+.btn-nav {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 20px;
 }
 
-/* ==========================================================================
-   ESTRUTURA DE SEÇÕES E GRIDS
-   ========================================================================== */
-.section { padding: clamp(60px, 8vw, 100px) 0; }
-.section-bg { background-color: var(--clr-bg-section); }
-.section-title { text-align: center; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--clr-dark); margin-bottom: 1rem; font-weight: 700; }
-.section-subtitle { text-align: center; color: var(--clr-text-muted); max-width: 600px; margin: 0 auto 3.5rem; }
-
-.grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 2rem; 
-}
-
-/* Cards Estáticos (Sinais) */
-.card { 
-    background: var(--clr-bg-card); 
-    padding: 2.5rem 2rem; 
-    border-radius: var(--radius-md); 
-    box-shadow: 0 10px 30px var(--clr-shadow); 
-    border: 1px solid var(--clr-border); 
-    transition: transform var(--timing-main) var(--cubic-bezier);
-}
-
-.card:hover { 
-    transform: translateY(-6px); 
-}
-
-.card-icon { font-size: 2.5rem; color: var(--clr-primary-light); margin-bottom: 1.25rem; }
-.card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--clr-dark); }
-
-/* ==========================================================================
-   COMPONENTE INTERATIVO: FLIP CARD (QUIZ)
-   ========================================================================== */
-.quiz-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.quiz-card {
-    background-color: transparent;
-    height: 280px;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.quiz-card__inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: var(--white);
+    padding: 100px 0;
     text-align: center;
-    transition: transform 0.6s var(--cubic-bezier);
-    transform-style: preserve-3d;
 }
 
-/* Estado ativo controlado via JS */
-.quiz-card.is-flipped .quiz-card__inner {
-    transform: rotateY(180deg);
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-.quiz-card__front, .quiz-card__back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--clr-border);
-    padding: 2rem;
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.btn-hero {
+    background-color: var(--white);
+    color: var(--primary);
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Seções de Conteúdo */
+.content-section {
+    padding: 80px 0;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* Grid de Passos */
+.grid-passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.passo {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.passo h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+/* Cards de Ajuda */
+.cards-ajuda {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 25px var(--clr-shadow);
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
 }
 
-.quiz-card__front {
-    background-color: var(--clr-bg-card);
+.card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    width: 320px;
+    border-top: 5px solid var(--primary);
 }
 
-.quiz-card__front i { font-size: 2.5rem; color: var(--clr-primary); margin-bottom: 1rem; }
-
-.quiz-card__back {
-    background-color: var(--clr-bg-card);
-    transform: rotateY(180deg);
+.card h3 {
+    margin-bottom: 15px;
 }
 
-.quiz-card__back i { font-size: 2.75rem; margin-bottom: 1rem; }
-.quiz-card__hint { font-size: 0.8rem; margin-top: 1rem; color: var(--clr-secondary); font-weight: 700; letter-spacing: 0.5px; }
-
-/* Modificadores de Resposta */
-.text-perigo { color: var(--clr-danger); border-top: 5px solid var(--clr-danger); }
-.text-sucesso { color: var(--clr-success); border-top: 5px solid var(--clr-success); }
-
-/* ==========================================================================
-   TIMELINE PROTOCOLO
-   ========================================================================== */
-.timeline { max-width: 800px; margin: 0 auto; position: relative; padding-left: 2rem; border-left: 3px solid var(--clr-border); }
-.timeline-item { position: relative; margin-bottom: 2.5rem; }
-.timeline-item::before { content: ''; position: absolute; left: -2.45rem; top: 6px; background: var(--clr-secondary); width: 12px; height: 12px; border-radius: 50%; border: 4px solid var(--clr-bg-body); box-shadow: 0 0 0 3px var(--clr-secondary); }
-.timeline-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--clr-primary); }
-
-/* ==========================================================================
-   COMPONENTE INTERATIVO: FAQ ACORDEÃO
-   ========================================================================== */
-.faq-container { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-.faq-item { background-color: var(--clr-bg-card); border-radius: var(--radius-sm); border: 1px solid var(--clr-border); overflow: hidden; box-shadow: 0 4px 12px var(--clr-shadow); }
-
-.faq-question { 
-    width: 100%; 
-    background: none; 
-    border: none; 
-    text-align: left; 
-    padding: 1.25rem; 
-    font-size: 1.05rem; 
-    font-weight: 600; 
-    color: var(--clr-dark); 
-    cursor: pointer; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+.btn-card {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
